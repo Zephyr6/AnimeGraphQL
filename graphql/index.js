@@ -1,8 +1,8 @@
-import express from "express"
-import bodyParser from "body-parser"
-import axios from "axios"
-import { graphqlExpress, graphiqlExpress } from "apollo-server-express"
-import { makeExecutableSchema } from "graphql-tools"
+import express from 'express'
+import bodyParser from 'body-parser'
+import axios from 'axios'
+import { graphqlExpress, graphiqlExpress } from 'apollo-server-express'
+import { makeExecutableSchema } from 'graphql-tools'
 
 const typeDefs = `
     type Query {
@@ -92,13 +92,13 @@ const PORT = 3001
 const app = express()
 
 // docs: https://github.com/assintates/mikan
-let baseUrl = "https://initiate.host"
+let baseUrl = 'https://initiate.host'
 const resolvers = {
   Query: {
     anime: async (root, args) => {
       let { id } = args
       return axios
-        .get(baseUrl + "/anime/" + id)
+        .get(baseUrl + '/anime/' + id)
         .then(response => {
           return response.data
         })
@@ -115,10 +115,10 @@ const resolvers = {
 
 // bodyParser is needed just for POST.
 app.use(
-  "/graphql",
+  '/graphql',
   bodyParser.json(),
   graphqlExpress({ schema: makeExecutableSchema({ typeDefs, resolvers }) })
 )
-app.get("/graphiql", graphiqlExpress({ endpointURL: "/graphql" })) // if you want GraphiQL enabled
+app.get('/graphiql', graphiqlExpress({ endpointURL: '/graphql' })) // if you want GraphiQL enabled
 
 app.listen(PORT)
