@@ -16,5 +16,9 @@ module.exports = {
     mikan: {
       baseUrl: lazyGetEnvVar('MIKAN_BASE_URL')
     }
+  },
+
+  mongo: {
+    url: lazyGetEnvVar('MONGO_URL')
   }
 }
