@@ -1,13 +1,9 @@
 FROM mhart/alpine-node:9.8
 
-COPY package.json package.json
+WORKDIR /app
 
 COPY . .
 
 RUN yarn
-
-RUN yarn build
-
-COPY . .
 
 CMD ["npm", "start"]
