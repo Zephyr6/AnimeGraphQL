@@ -3,11 +3,24 @@
   "version": "1.0.0",
   "description": "",
   "babel": {
-    "presets": ["env"]
+    "presets": [
+      [
+        "env",
+        {
+          "targets": {
+            "node": "current"
+          }
+        }
+      ]
+    ]
   },
+  "main": "dist/index.js",
   "scripts": {
-    "start": "nodemon ./index.js --exec babel-node",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "rm -rf build && mkdir build",
+    "build": "babel ./src/ -d ./dist/",
+    "serve": "npm run clean && npm run build && nodemon --watch dist",
+    "start": "node ./dist/",
+    "dev": "nodemon dist --exec babel-node"
   },
   "author": "",
   "license": "ISC",
