@@ -7,7 +7,21 @@ import { makeExecutableSchema } from 'graphql-tools'
 const typeDefs = `
     type Query {
         anime(id: Int): Anime
-        search(name: String): [Anime]
+        search(name: String): [AnimeResult]
+    }
+
+    type AnimeResult {
+        id: Int
+        url: String
+        name: String
+        type: String
+        episode: Int
+        score: Float
+        aired: Aired
+        members: Int
+        details: String
+        rated: String
+        image_url: String
     }
 
     type Anime {
@@ -92,23 +106,34 @@ const PORT = 3001
 const app = express()
 
 // docs: https://github.com/assintates/mikan
-let baseUrl = 'https://initiate.host'
+const baseUrl = 'https://initiate.host'
 const resolvers = {
   Query: {
     anime: async (root, args) => {
       let { id } = args
+
       return axios
         .get(baseUrl + '/anime/' + id)
         .then(response => {
           return response.data
         })
         .catch(err => {
-          console.log(err)
+          console.error(err)
           return null
         })
     },
     search: async (root, args) => {
       let { name } = args
+
+      return axios
+        .get(baseUrl + '/search/' + name)
+        .then(response => {
+          return response.data.result
+        })
+        .catch(err => {
+          console.error(err)
+          return null
+        })
     }
   }
 }
