@@ -1,5 +1,6 @@
 import bodyParser from 'body-parser'
 import config from 'lazy-config'
+import cors from 'cors'
 import express from 'express'
 import { graphqlExpress, graphiqlExpress } from 'apollo-server-express'
 import { makeExecutableSchema } from 'graphql-tools'
@@ -109,9 +110,11 @@ const app = express()
 // bodyParser is needed just for POST.
 app.use(
   '/graphql',
+  cors(),
   bodyParser.json(),
   graphqlExpress({ schema: makeExecutableSchema({ typeDefs, resolvers }) })
 )
 app.get('/graphiql', graphiqlExpress({ endpointURL: '/graphql' })) // if you want GraphiQL enabled
 
 app.listen(config.port)
+console.log('Server started on ' + config.port)
