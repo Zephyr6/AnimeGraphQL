@@ -3,7 +3,7 @@ import config from 'lazy-config'
 
 import db from '../db'
 
-const baseUrl = config.api.mikan.baseUrl
+const baseUrl = config.api.anime.baseUrl
 
 export default async function anime(root, args) {
   let { id } = args

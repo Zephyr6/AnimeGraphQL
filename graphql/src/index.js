@@ -16,9 +16,9 @@ const typeDefs = `
     type AnimeResult {
         id: Int
         url: String
-        name: String
+        title: String
         type: String
-        episode: Int
+        episodes: Int
         score: Float
         aired: Aired
         members: Int
@@ -28,14 +28,14 @@ const typeDefs = `
     }
 
     type Anime {
-        id: Int
+        mal_id: Int
         title: String
         synopsis: String
         url: String
         image_url: String
         title_english: String
         title_japanese: String
-        episode: Int
+        episodes: Int
         status: String
         airing: Boolean
         aired_string: String
@@ -54,8 +54,8 @@ const typeDefs = `
         members: Int
         background: String
         related: Related
-        opening_theme: [Track]
-        ending_theme: [Track]
+        opening_theme: [String]
+        ending_theme: [String]
     }
 
     type Aired {

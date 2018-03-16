@@ -35,10 +35,10 @@ class Results extends Component {
   renderResult(result) {
     return (
       <ListItem key={result.id} dense button>
-        <img alt={result.name} src={result.image_url} style={{ width: 65 }} />
+        <img alt={result.title} src={result.image_url} style={{ width: 65 }} />
         <ListItemText
-          primary={result.name}
-          secondary={`${result.episode} episode${
+          primary={result.title}
+          secondary={`${result.episodes} episode${
             result.episode === 1 ? '' : 's'
           }`}
         />
@@ -80,10 +80,10 @@ export default graphql(
   gql`
     query($term: String) {
       search(name: $term) {
-        name
+        title
         id
         image_url
-        episode
+        episodes
       }
     }
   `,

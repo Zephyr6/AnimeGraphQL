@@ -12,9 +12,9 @@ module.exports = {
   port: lazyGetEnvVar('GRAPHQL_PORT'),
 
   api: {
-    // docs: https://github.com/assintates/mikan
-    mikan: {
-      baseUrl: lazyGetEnvVar('MIKAN_BASE_URL')
+    // docs: https://jikan.docs.apiary.io/
+    anime: {
+      baseUrl: lazyGetEnvVar('ANIME_BASE_URL')
     }
   },
 
